@@ -19,10 +19,3 @@
 </head>
 
 <body>
-
-
-
-    @livewireScripts
-</body>
-
-</html>
