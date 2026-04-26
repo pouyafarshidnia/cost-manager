@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LogoutCpntroller;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::middleware('auth')->group(function () {
     /**
      * Dashboard
      */
-    Route::get('', function () {})->name('home');
+    Route::get('', [DashboardController::class, 'index'])->name('home');
 
 
 

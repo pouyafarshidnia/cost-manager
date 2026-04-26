@@ -19,3 +19,5 @@
 </head>
 
 <body>
+
+    <x-nav></x-nav>
