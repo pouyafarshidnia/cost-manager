@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\LogoutCpntroller;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,9 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('', [DashboardController::class, 'index'])->name('home');
 
 
+    /**
+     * Categories
+     */
+    Route::resource('categories', CategoryController::class)->except(['show, create, edit']);
 
     /**
      * Logout
      */
-    Route::get('logout', LogoutCpntroller::class)->name('logout');
+    Route::get('logout', LogoutController::class)->name('logout');
 });

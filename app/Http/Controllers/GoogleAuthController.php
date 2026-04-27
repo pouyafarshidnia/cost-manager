@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Socialite;
 
-class GoogleAuthController extends Controller
+class GoogleAuthController
 {
 
     public function redirect(): RedirectResponse

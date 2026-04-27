@@ -10,6 +10,8 @@
     class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 h-[calc(100vh-4rem)] fixed top-16 left-0 overflow-y-auto z-50 transition-all duration-300 ease-in-out transform lg:transform-none">
     <nav class="p-4 space-y-1">
 
+
+        <!-- Dashboard (Home) --->
         <a href="{{ route('home') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
             :class="routeName === 'home' ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
@@ -24,6 +26,28 @@
 
         </a>
 
+
+        <!-- Categories --->
+        <a href=""
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
+            :class="routeName === 'categories.index' ?
+                'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
+                ' hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-category w-5 h-5 text-gray-700 dark:text-gray-300">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 4h6v6h-6l0 -6" />
+                <path d="M14 4h6v6h-6l0 -6" />
+                <path d="M4 14h6v6h-6l0 -6" />
+                <path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300"> Categories</span>
+
+        </a>
+
+
+        <!-- Sample menu --->
         <div x-data="{ open: false }">
             <button x-on:click="open = !open"
                 class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200">

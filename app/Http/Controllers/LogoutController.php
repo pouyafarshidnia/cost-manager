@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
-class LogoutCpntroller extends Controller
+class LogoutController
 {
 
     public function __invoke(): RedirectResponse
