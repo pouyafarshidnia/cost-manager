@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900">
+<body class="bg-gray-50 dark:bg-gray-900" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
 
     <x-nav></x-nav>
     <x-aside></x-aside>

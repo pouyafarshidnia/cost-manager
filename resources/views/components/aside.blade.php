@@ -1,12 +1,21 @@
-<aside x-data="{ routeName: '{{ request()->route()->getName() }}' }"
-    class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto transition-colors duration-200">
+<!-- Mobile Overlay Backdrop -->
+<div x-cloak x-show="sidebarOpen" x-on:click="sidebarOpen = false"
+    x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300"
+    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+    class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-40 lg:hidden" aria-hidden="true">
+</div>
+
+<aside x-data="{ routeName: '{{ request()->route()->getName() }}' }" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+    class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 h-[calc(100vh-4rem)] fixed top-16 left-0 overflow-y-auto z-50 transition-all duration-300 ease-in-out transform lg:transform-none">
     <nav class="p-4 space-y-1">
 
         <a href="{{ route('home') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
             :class="routeName === 'home' ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
                 ' hover:bg-gray-50 dark:hover:bg-gray-700/50'">
-            <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                 </path>
