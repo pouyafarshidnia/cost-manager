@@ -2,6 +2,10 @@
 @section('content')
     <div x-data="{ createOpen: false, filterOpen: false }">
 
+        <x-flash></x-flash>
+
+
+        <!-- Table --->
         <div class="lg:ml-64 min-h-[calc(100vh-4rem)] bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
             <div class="p-4 sm:p-6 lg:p-8">
 
@@ -11,7 +15,8 @@
                         <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 transition-colors duration-200">
                             Categories
                         </h1>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-200">Manage your
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-200">Manage
+                            your
                             expense and income categories</p>
                     </div>
 
@@ -282,7 +287,8 @@
                     <div
                         class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between transition-colors duration-200">
                         <div class="flex items-center gap-2">
-                            <span class="text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">Showing 1
+                            <span class="text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">Showing
+                                1
                                 to
                                 3 of 24 results</span>
                         </div>
@@ -323,10 +329,13 @@
                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                 x-transition:leave="transition-opacity ease-linear duration-200" x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0" x-on:click="createOpen = false"
-                class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm"></div>
+                class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm">
+            </div>
+
 
             <!-- Modal Panel -->
             <div class="flex min-h-full items-center justify-center p-4">
+
                 <form action="{{ route('categories.store') }}" x-show="createOpen"
                     x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -340,7 +349,8 @@
                     <!-- Header -->
                     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="modal-title">Create New
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="modal-title">Create
+                                New
                                 Category</h3>
                             <button x-on:click="createOpen = false"
                                 class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
@@ -358,7 +368,7 @@
                             <label for="category-name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category
                                 Name</label>
-                            <input type="text" id="category-name" placeholder="Enter category name..."
+                            <input type="text" name='name' placeholder="Enter category name..."
                                 class="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200">
                         </div>
 
@@ -402,7 +412,8 @@
                     <!-- Header -->
                     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="filter-title">Filter
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="filter-title">
+                                Filter
                                 Categories</h3>
                             <button x-on:click="filterOpen = false"
                                 class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
