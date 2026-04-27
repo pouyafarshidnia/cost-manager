@@ -4,9 +4,7 @@ use App\Models\Category;
 use App\Models\User;
 
 beforeEach(function () {
-    $this->user = User::factory()->create()->fresh();
-    Category::factory()->count(5)->create(['user_id' => $this->user->id]);
-    Category::factory()->count(3)->create();
+    $this->category = Category::factory()->create()->fresh();
 });
 
 
@@ -16,13 +14,13 @@ beforeEach(function () {
  */
 test('to array', function () {
 
-    $model_fields = array_keys($this->user->toArray());
+    $model_fields = array_keys($this->category->toArray());
 
     $expected_fields = [
         'id',
-        'name',
-        'email',
-        'picture',
+        'user_id',
+        'title',
+        'slug',
         'created_at',
         'updated_at',
     ];
@@ -40,8 +38,8 @@ test('to array', function () {
  */
 describe('relation tests', function () {
 
-    it('has many categories', function () {
+    it('belongs to s user', function () {
 
-        expect($this->user->categories)->toHaveCount(5);
+        expect($this->category->user)->toBeInstanceOf(User::class);
     });
 });
