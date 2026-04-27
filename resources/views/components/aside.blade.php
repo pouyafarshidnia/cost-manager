@@ -14,21 +14,24 @@
         <!-- Dashboard (Home) --->
         <a href="{{ route('home') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
-            :class="routeName === 'home' ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
-                ' hover:bg-gray-50 dark:hover:bg-gray-700/50'">
-            <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor"
-                viewBox="0 0 24 24">
+            :class="routeName === 'home' ? 'bg-indigo-50 dark:bg-indigo-900/30 ' : ''">
+            <svg :class="routeName === 'home' ? 'text-indigo-700 dark:text-indigo-400' :
+                'hover:bg-gray-50 dark:hover:bg-gray-700/50'"
+                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                 </path>
             </svg>
-            <span class="text-gray-700 dark:text-gray-300"> Dashboard</span>
+            <span
+                :class="routeName === 'home' ? 'text-indigo-700 dark:text-indigo-400' :
+                    'hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+                Dashboard</span>
 
         </a>
 
 
         <!-- Categories --->
-        <a href=""
+        <a href="{{ route('categories.index') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
             :class="routeName === 'categories.index' ?
                 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
