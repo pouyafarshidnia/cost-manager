@@ -20,5 +20,9 @@
 
 <body>
 
-    <x-nav></x-nav>
-    <x-aside></x-aside>
+    @yield('content')
+
+    @livewireScripts
+</body>
+
+</html>
