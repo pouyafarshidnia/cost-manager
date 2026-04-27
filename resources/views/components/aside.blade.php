@@ -29,7 +29,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
             </button>
-            <div x-show="open" x-collapse class="mt-1 ml-4 pl-4 border-l border-gray-200 space-y-1">
+            <div x-cloak x-show="open" x-collapse class="mt-1 ml-4 pl-4 border-l border-gray-200 space-y-1">
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
                     Overview
@@ -39,7 +39,7 @@
                     Reports
                 </a>
                 <a href="#"
-                    class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-indigo-600 bg-indigo-50 font-medium">
+                    class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 font-medium">
                     Statistics
                 </a>
             </div>

@@ -51,7 +51,7 @@
                         <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
 
-                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                    <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75"
@@ -173,7 +173,7 @@
                         <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-green-500 rounded-full"></span>
                     </button>
 
-                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                    <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75"
@@ -269,13 +269,13 @@
                 <!-- Profile --->
                 <div class="flex items-center gap-3 pl-2 border-l border-gray-200" x-data="{ open: false, darkMode: localStorage.getItem('theme') === 'dark' }"
                     @click.outside="open = false">
-                    <button @click="open = !open"
+                    <button x-on:click="open = !open"
                         class="flex items-center gap-2 hover:bg-gray-100 rounded-xl p-1.5 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=32"
-                            alt="User" class="w-8 h-8 rounded-lg">
+                        <img src="{{ $currentUser->picture }}" alt="{{ $currentUser->name }}"
+                            class="w-8 h-8 rounded-lg">
                         <div class="hidden md:block text-left">
-                            <p class="text-sm font-medium text-gray-900">Admin User</p>
-                            <p class="text-xs text-gray-500">admin@costmanager.com</p>
+                            <p class="text-sm font-medium text-gray-900">{{ $currentUser->name }}</p>
+                            <p class="text-xs text-gray-500">{{ $currentUser->email }}</p>
                         </div>
                         <svg class="w-4 h-4 text-gray-400 hidden md:block transition-transform"
                             :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@
                         </svg>
                     </button>
 
-                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                    <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75"
@@ -292,8 +292,8 @@
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="absolute right-4 top-14 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
                         <div class="px-4 py-3 border-b border-gray-100">
-                            <p class="text-sm font-medium text-gray-900">Admin User</p>
-                            <p class="text-xs text-gray-500">admin@costmanager.com</p>
+                            <p class="text-sm font-medium text-gray-900">{{ $currentUser->name }}</p>
+                            <p class="text-xs text-gray-500">{{ $currentUser->email }}m</p>
                         </div>
 
                         <a href="#"
@@ -307,7 +307,7 @@
                         </a>
 
                         <button
-                            @click="darkMode = !darkMode; localStorage.setItem('theme', darkMode ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', darkMode)"
+                            x-on:click="darkMode = !darkMode; localStorage.setItem('theme', darkMode ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', darkMode)"
                             class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                             <svg x-show="!darkMode" class="w-4 h-4 text-gray-500" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@
                         </button>
 
                         <div class="border-t border-gray-100 mt-2 pt-2">
-                            <a href="#"
+                            <a href="{{ route('logout') }}"
                                 class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors">
                                 <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
