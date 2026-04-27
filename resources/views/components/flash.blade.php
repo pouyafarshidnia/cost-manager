@@ -12,7 +12,7 @@
                             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <p class="text-sm font-medium flex-1 text-red-800 dark:text-red-300">message</p>
+                <p class="text-sm font-medium flex-1 text-red-800 dark:text-red-300">{{ $error }}</p>
                 <button onclick="this.parentElement.remove()"
                     class="shrink-0 p-1 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors duration-200">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

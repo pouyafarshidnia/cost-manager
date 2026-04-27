@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->otherCategory = Category::factory()->create()->fresh();
 
     $this->url = route('categories.update', $this->category);
-    $this->data = ['name' => fake()->name()];
+    $this->data = ['title' => fake()->name()];
 });
 
 
@@ -43,8 +43,8 @@ describe('access tests', function () {
 describe('validation tests', function () {
 
 
-    it('validates name field properly', function (?string $name) {
+    it('validates title field properly', function (?string $title) {
 
-        $this->actingAs($this->user)->put($this->url, ['name' => $name])->assertSessionHasErrors('name');
+        $this->actingAs($this->user)->put($this->url, ['title' => $title])->assertSessionHasErrors('title');
     })->with([null, '', str_repeat('a', 256)]);
 });

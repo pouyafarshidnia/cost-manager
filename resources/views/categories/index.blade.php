@@ -336,7 +336,7 @@
             <!-- Modal Panel -->
             <div class="flex min-h-full items-center justify-center p-4">
 
-                <form action="{{ route('categories.store') }}" x-show="createOpen"
+                <form action="{{ route('categories.store') }}" x-show="createOpen" method="post"
                     x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -365,10 +365,11 @@
                     <!-- Body -->
                     <div class="px-6 py-4 space-y-4">
                         <div>
-                            <label for="category-name"
+                            <label for="category-title"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category
-                                Name</label>
-                            <input type="text" name='name' placeholder="Enter category name..."
+                                Title</label>
+                            <input type="text" id='category-title' name='title'
+                                placeholder="Enter category title..."
                                 class="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200">
                         </div>
 

@@ -6,7 +6,7 @@ beforeEach(function () {
 
     $this->url = route('categories.store');
     $this->user = User::factory()->create()->fresh();
-    $this->data = ['name' => fake()->name()];
+    $this->data = ['title' => fake()->name()];
 });
 
 
@@ -34,8 +34,8 @@ describe('access tests', function () {
 describe('validation tests', function () {
 
 
-    it('validates name field properly', function (?string $name) {
+    it('validates title field properly', function (?string $title) {
 
-        $this->actingAs($this->user)->post($this->url, ['name' => $name])->assertSessionHasErrors('name');
+        $this->actingAs($this->user)->post($this->url, ['title' => $title])->assertSessionHasErrors('title');
     })->with([null, '', str_repeat('a', 256)]);
 });
