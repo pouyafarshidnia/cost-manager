@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class=''>
 
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900">
 
     <x-nav></x-nav>
     <x-aside></x-aside>
