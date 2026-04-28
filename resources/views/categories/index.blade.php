@@ -1,8 +1,20 @@
 @extends('layouts.app')
 @section('content')
-    <div x-data="{ createOpen: false, filterOpen: false, editOpen: false, deleteOpen: false, selectedCategory: null, openEdit(category) { this.selectedCategory = category;
-            this.editOpen = true; }, openDelete(category) { this.selectedCategory = category;
-            this.deleteOpen = true; } }">
+    <div x-data="{
+        createOpen: false,
+        filterOpen: false,
+        editOpen: false,
+        deleteOpen: false,
+        selectedCategory: null,
+        openEdit(category) {
+            this.selectedCategory = category;
+            this.editOpen = true;
+        },
+        openDelete(category) {
+            this.selectedCategory = category;
+            this.deleteOpen = true;
+        }
+    }">
 
         <x-flash></x-flash>
 
@@ -176,38 +188,8 @@
                         </div>
 
                         <!-- Pagination -->
-                        <div
-                            class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between transition-colors duration-200">
-                            <div class="flex items-center gap-2">
-                                <span
-                                    class="text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">Showing
-                                    1
-                                    to
-                                    3 of 24 results</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button
-                                    class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-                                    disabled>
-                                    Previous
-                                </button>
-                                <div class="flex items-center gap-1">
-                                    <button
-                                        class="px-3 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg transition-colors duration-200">1</button>
-                                    <button
-                                        class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">2</button>
-                                    <button
-                                        class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">3</button>
-                                    <span class="px-2 text-gray-400">...</span>
-                                    <button
-                                        class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">8</button>
-                                </div>
-                                <button
-                                    class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
+                        {{ $categories->links() }}
+
                     </div>
                 @else
                     <div class='flex flex-col items-center justify-center py-24'>
