@@ -7,8 +7,9 @@ use Illuminate\View\View;
 
 class DashboardController
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('dashboard.index');
+        $categoryCount = $request->user()->categories->count();
+        return view('dashboard.index', compact('categoryCount'));
     }
 }
