@@ -17,7 +17,7 @@ class CategoryController
 {
     public function index(Request $request): View
     {
-        $categories = $request->user()->categories;
+        $categories = $request->user()->categories()->paginate($request->perPage)->withQueryString();
         return view('categories.index', compact('categories'));
     }
 
