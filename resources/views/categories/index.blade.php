@@ -108,6 +108,10 @@
 
                                     <tr>
 
+                                        <th class="px-6 py-4 text-left text-purple-400">
+                                            #
+                                        </th>
+
                                         <th class="px-6 py-4 text-left">
                                             <button
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
@@ -147,6 +151,10 @@
                                     @foreach ($categories as $category)
                                         <tr
                                             class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200">
+
+                                            <td class="px-6 py-4 text-purple-400">
+                                                {{ $loop->iteration }}
+                                            </td>
 
                                             <td class="px-6 py-4">
                                                 <div class="flex items-center gap-3">
