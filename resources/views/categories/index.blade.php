@@ -38,7 +38,7 @@
                     <div class="flex items-center gap-3">
 
                         <!-- Filter Button -->
-                        <button x-on:click="filterOpen = true"
+                        {{-- <button x-on:click="filterOpen = true"
                             class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,7 +46,7 @@
                                 </path>
                             </svg>
                             Filter
-                        </button>
+                        </button> --}}
 
                         <!-- Create Button -->
                         <button x-on:click="createOpen = true"
@@ -60,18 +60,41 @@
                     </div>
                 </div>
 
-                <!-- Search Bar -->
+                <!-- Search Bar & Page Size -->
                 <div class="mb-6">
-                    <div class="relative max-w-md">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
+                    <form method="get" class="flex flex-wrap items-center gap-3">
+                        <!-- Hidden inputs for existing params -->
+                        @foreach (request()->except(['s', 'perPage']) as $key => $value)
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                        @endforeach
+
+                        <!-- Search Input -->
+                        <div class="relative max-w-md flex-1 min-w-[200px]">
+                            <button type='submit'
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                            <input type="text" name='s' placeholder="Search categories..."
+                                value="{{ request()->get('s') ?? '' }}"
+                                class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200">
                         </div>
-                        <input type="text" placeholder="Search categories..."
-                            class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200">
-                    </div>
+
+                        <!-- Per Page Dropdown -->
+                        <select name="perPage" x-on:change="$el.form.submit()"
+                            class="px-3 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-200 cursor-pointer">
+                            <option value="10" {{ request()->get('perPage') == 10 ? 'selected' : '' }}>10 per page
+                            </option>
+                            <option value="25" {{ request()->get('perPage') == 25 ? 'selected' : '' }}>25 per page
+                            </option>
+                            <option value="50" {{ request()->get('perPage') == 50 ? 'selected' : '' }}>50 per page
+                            </option>
+                            <option value="100" {{ request()->get('perPage') == 100 ? 'selected' : '' }}>100 per page
+                            </option>
+                        </select>
+                    </form>
                 </div>
 
                 <!-- Table -->
@@ -424,7 +447,7 @@
         </div>
 
         <!-- Filter Modal -->
-        <div x-cloak x-show="filterOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="filter-title"
+        {{-- <div x-cloak x-show="filterOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="filter-title"
             role="dialog" aria-modal="true">
             <!-- Backdrop -->
             <div x-show="filterOpen" x-transition:enter="transition-opacity ease-linear duration-300"
@@ -528,7 +551,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 @endsection
