@@ -5,8 +5,15 @@
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
+    "repositories": [
+        {
+        "type": "path",
+        "url": "./../elefilter"
+        }
+    ],
     "require": {
         "php": "^8.4",
+        "elefilter/elefilter": "dev-master",
         "laravel/framework": "^13.0",
         "laravel/socialite": "^5.26",
         "laravel/tinker": "^3.0",
