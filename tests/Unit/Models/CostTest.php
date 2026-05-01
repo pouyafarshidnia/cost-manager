@@ -16,7 +16,7 @@ beforeEach(function () {
  */
 test('to array', function () {
 
-    $model_fields = array_keys($this->category->toArray());
+    $model_fields = array_keys($this->cost->toArray());
 
     $expected_fields = [
         'id',
@@ -45,7 +45,7 @@ describe('casts tests', function () {
 
     it('casts spent at to date', function () {
 
-        expect($this->cost->date)->toBeInstanceOf(Carbon::class);
+        expect($this->cost->spent_at)->toBeInstanceOf(Carbon::class);
     });
 });
 
@@ -63,6 +63,6 @@ describe('relation tests', function () {
 
     it('belongs to s category', function () {
 
-        expect($this->cost->user)->toBeInstanceOf(Category::class);
+        expect($this->cost->category)->toBeInstanceOf(Category::class);
     });
 });

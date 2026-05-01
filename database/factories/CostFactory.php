@@ -24,7 +24,7 @@ class CostFactory extends Factory
             'category_id'   => Category::factory(),
             'title'         => $this->faker->title(),
             'price'         => $this->faker->numberBetween(100, 999_999_999),
-            'date'          => $this->faker->date('j F,Y'),
+            'spent_at'      => $this->faker->date('j F,Y'),
             'note'          => null,
         ];
     }

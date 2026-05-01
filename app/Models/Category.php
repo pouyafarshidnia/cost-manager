@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[UsePolicy(CategoryPolicty::class)]
 class Category extends Model
@@ -22,5 +23,11 @@ class Category extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function costs(): HasMany
+    {
+        return $this->hasMany(Cost::class);
     }
 }
