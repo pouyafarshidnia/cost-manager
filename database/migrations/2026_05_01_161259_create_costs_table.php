@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('title');
+            $table->string('title', 255);
             $table->integer('price');
             $table->date('spent_at');
             $table->mediumText('note')->nullable();

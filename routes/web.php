@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CostsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LogoutController;
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
      * Categories
      */
     Route::resource('categories', CategoryController::class)->except(['show, create, edit']);
+
+
+    /**
+     * Costs
+     */
+    Route::resource('costs', CostsController::class)->except(['show', 'create', 'edit']);
 
 
 
