@@ -3,11 +3,10 @@
 use App\Models\Category;
 use App\Models\Cost;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 beforeEach(function () {
-    $this->category = Category::factory()->create()->fresh();
-    Cost::factory()->count(4)->create(['category_id' => $this->category->id]);
-    Cost::factory()->count(7)->create();
+    $this->cost = Cost::factory()->create()->fresh();
 });
 
 
@@ -22,7 +21,11 @@ test('to array', function () {
     $expected_fields = [
         'id',
         'user_id',
+        'category_id',
         'title',
+        'price',
+        'date',
+        'note',
         'created_at',
         'updated_at',
     ];
@@ -36,17 +39,30 @@ test('to array', function () {
 
 
 /**
+ * Casts
+ */
+describe('casts tests', function () {
+
+    it('casts date to date', function () {
+
+        expect($this->cost->date)->toBeInstanceOf(Carbon::class);
+    });
+});
+
+
+/**
  * Relations
  */
 describe('relation tests', function () {
 
     it('belongs to s user', function () {
 
-        expect($this->category->user)->toBeInstanceOf(User::class);
+        expect($this->cost->user)->toBeInstanceOf(User::class);
     });
 
 
-    it('has many costs', function () {
-        expect($this->category->costs->count())->toBe(4);
+    it('belongs to s category', function () {
+
+        expect($this->cost->user)->toBeInstanceOf(Category::class);
     });
 });
