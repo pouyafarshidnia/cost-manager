@@ -33,6 +33,7 @@ describe('http status tests', function () {
 describe('view & data tests', function () {
 
     it('loads proper view', function () {
-        $this->actingAs($this->user)->get($this->url)->assertViewIs('dashboard.index');
+        $this->actingAs($this->user)->get($this->url)->assertViewIs('dashboard.index')
+            ->assertViewHas('categoryCount');
     });
 });
