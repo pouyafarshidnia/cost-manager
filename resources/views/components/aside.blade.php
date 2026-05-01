@@ -38,14 +38,19 @@
                 ' hover:bg-gray-50 dark:hover:bg-gray-700/50'">
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-category w-5 h-5 text-gray-700 dark:text-gray-300">
+                class="icon icon-tabler icons-tabler-outline icon-tabler-category w-5 h-5"
+                :class="routeName === 'categories.index' ? 'text-indigo-700 dark:text-indigo-400' :
+                    'hover:bg-gray-50 dark:hover:bg-gray-700/50'">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M4 4h6v6h-6l0 -6" />
                 <path d="M14 4h6v6h-6l0 -6" />
                 <path d="M4 14h6v6h-6l0 -6" />
                 <path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
             </svg>
-            <span class="text-gray-700 dark:text-gray-300"> Categories</span>
+            <span
+                :class="routeName === 'categories.index' ? 'text-indigo-700 dark:text-indigo-400' :
+                    'hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+                Categories</span>
 
         </a>
 
