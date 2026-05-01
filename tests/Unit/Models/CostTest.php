@@ -24,7 +24,7 @@ test('to array', function () {
         'category_id',
         'title',
         'price',
-        'date',
+        'spent_at',
         'note',
         'created_at',
         'updated_at',
@@ -43,7 +43,7 @@ test('to array', function () {
  */
 describe('casts tests', function () {
 
-    it('casts date to date', function () {
+    it('casts spent at to date', function () {
 
         expect($this->cost->date)->toBeInstanceOf(Carbon::class);
     });

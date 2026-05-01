@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cost extends Model
 {
-    /** @use HasFactory<\Database\Factories\CostFactory> */
     use HasFactory;
+
+    protected $casts = ['spent_at' => 'date'];
 }

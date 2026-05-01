@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->integer('price');
-            $table->date('date');
+            $table->date('spent_at');
             $table->mediumText('note')->nullable();
             $table->timestamps();
         });
