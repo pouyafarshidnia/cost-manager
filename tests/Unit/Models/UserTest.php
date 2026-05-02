@@ -1,19 +1,5 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Cost;
-use App\Models\User;
-
-beforeEach(function () {
-    $this->user = User::factory()->create()->fresh();
-    Category::factory()->count(5)->create(['user_id' => $this->user->id]);
-    Category::factory()->count(3)->create();
-
-    Cost::factory()->count(6)->create(['user_id' => $this->user->id]);
-    Cost::factory()->count(1)->create();
-});
-
-
 
 /**
  * Columns
@@ -50,6 +36,6 @@ describe('relation tests', function () {
     });
 
     it('has many costs', function () {
-        expect($this->user->costs->count())->toBe(6);
+        expect($this->user->costs->count())->toBe(8);
     });
 });

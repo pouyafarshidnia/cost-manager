@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use App\Policies\CostPolicy;
+use EleFilter\Traits\Filterable;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[UsePolicy(CostPolicy::class)]
 class Cost extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
 
     protected $casts = ['spent_at' => 'date'];
 

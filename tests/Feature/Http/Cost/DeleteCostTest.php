@@ -1,13 +1,8 @@
 <?php
 
-use App\Models\Cost;
-
 beforeEach(function () {
 
-    $this->cost = Cost::factory()->create()->fresh();
-    $this->otherCost = Cost::factory()->create()->fresh();
-
-    $this->url = route('cost.destroy', $this->cost);
+    $this->url = route('costs.destroy', $this->cost);
 });
 
 
@@ -29,6 +24,6 @@ describe('access tests', function () {
 
     it('denies access to authenticated non-owner user', function () {
 
-        $this->actingAs($this->otherCost->user)->delete($this->url)->assertForbidden();
+        $this->actingAs($this->otherUser)->delete($this->url)->assertForbidden();
     });
 });

@@ -1,11 +1,9 @@
 <?php
 
-use App\Models\User;
 
 beforeEach(function () {
 
     $this->url = route('categories.store');
-    $this->user = User::factory()->create()->fresh();
     $this->data = ['title' => fake()->name()];
 });
 

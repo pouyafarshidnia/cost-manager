@@ -11,9 +11,17 @@
 |
 */
 
+
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature', 'Unit');
+    ->beforeEach(function () {
+        $this->seed(Database\Seeders\DatabaseSeeder::class);
+        $this->user = App\Models\User::find(1);
+        $this->category = App\Models\Category::find(1);
+        $this->cost = App\Models\Cost::find(1);
+        $this->otherUser =  App\Models\User::find(2);
+    })->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +49,4 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
-{
-    // ..
-}
+function something() {}

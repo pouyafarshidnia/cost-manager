@@ -1,13 +1,8 @@
 <?php
 
 use App\Models\Category;
-use App\Models\Cost;
 use App\Models\User;
 use Illuminate\Support\Carbon;
-
-beforeEach(function () {
-    $this->cost = Cost::factory()->create()->fresh();
-});
 
 
 

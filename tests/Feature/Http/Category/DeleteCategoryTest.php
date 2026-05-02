@@ -1,14 +1,7 @@
 <?php
 
-use App\Models\Category;
-use App\Models\User;
 
 beforeEach(function () {
-
-    $this->user = User::factory()->create()->fresh();
-    $this->category = Category::factory()->create(['user_id' => $this->user->id])->fresh();
-    $this->otherCategory = Category::factory()->create()->fresh();
-
     $this->url = route('categories.destroy', $this->category);
 });
 
@@ -31,6 +24,6 @@ describe('access tests', function () {
 
     it('denies access to authenticated non-owner user', function () {
 
-        $this->actingAs($this->otherCategory->user)->delete($this->url)->assertForbidden();
+        $this->actingAs($this->otherUser)->delete($this->url)->assertForbidden();
     });
 });

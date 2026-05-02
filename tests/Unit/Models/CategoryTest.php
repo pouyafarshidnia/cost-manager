@@ -1,14 +1,7 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Cost;
-use App\Models\User;
 
-beforeEach(function () {
-    $this->category = Category::factory()->create()->fresh();
-    Cost::factory()->count(4)->create(['category_id' => $this->category->id]);
-    Cost::factory()->count(7)->create();
-});
+use App\Models\User;
 
 
 
@@ -47,6 +40,6 @@ describe('relation tests', function () {
 
 
     it('has many costs', function () {
-        expect($this->category->costs->count())->toBe(4);
+        expect($this->category->costs->count())->toBe(8);
     });
 });

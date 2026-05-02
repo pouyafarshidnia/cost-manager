@@ -1,16 +1,8 @@
 <?php
 
-use App\Models\Category;
-use App\Models\User;
 
 beforeEach(function () {
-
     $this->url = route('categories.index');
-    $this->user = User::factory()->create()->fresh();
-    Category::factory()->count(5)->create(['user_id' => $this->user->id]);
-    Category::factory()->count(3)->create();
-
-    $this->category = $this->user->categories()->first();
 });
 
 

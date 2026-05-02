@@ -5,7 +5,7 @@ use App\Models\User;
 
 beforeEach(function () {
 
-    $this->user = User::factory()->create();
+    $this->user = User::find(1);
     $this->action = new AuthAction;
 
     $this->googleUserMock = (object) [
@@ -24,11 +24,9 @@ beforeEach(function () {
 
 it('returns existing user', function () {
 
-    expect(User::count())->toBe(1);
-
     $user =  $this->action->handle($this->googleUserMock);
 
-    expect(User::count())->toBe(1)
+    expect($user->id)->toBe($this->user->id)
         ->and($user)->toBeInstanceOf(User::class)
         ->and($user->email)->toBe($this->googleUserMock->email);
 });
@@ -36,11 +34,11 @@ it('returns existing user', function () {
 
 it('registers new user', function () {
 
-    expect(User::count())->toBe(1);
+    $usersCount = User::count();
 
     $user = $this->action->handle($this->googleNewUserMock);
 
-    expect(User::count())->toBe(2)
+    expect(User::count())->toBe($usersCount + 1)
         ->and($user)->toBeInstanceOf(User::class)
         ->and($user->email)->toBe($this->googleNewUserMock->email);
 });
