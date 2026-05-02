@@ -48,10 +48,10 @@ describe('access tests', function () {
  */
 describe('validation tests', function () {
 
-    it('validate category id properly', function (?int $category_id) {
+    it('validates category id properly', function (mixed $category_id) {
 
         $this->actingAs($this->cost->user)->post($this->url, ['category_id' => $category_id])->assertSessionHasErrors('category_id');
-    })->with([null, '', 0, $this->otherCost->category_id]);
+    })->with([null, '', 0, fn() => Category::factory()->create()->fresh()->id]);
 
 
     it('validates title field properly', function (?string $title) {
@@ -61,14 +61,14 @@ describe('validation tests', function () {
 
 
 
-    it('validates price field properly', function (?string $price) {
+    it('validates price field properly', function (mixed $price) {
 
         $this->actingAs($this->cost->user)->post($this->url, ['price' => $price])->assertSessionHasErrors('price');
     })->with([null, '', 'price', 0, -10]);
 
 
 
-    it('validates spent at field properly', function (?string $spent_at) {
+    it('validates spent at field properly', function (mixed $spent_at) {
 
         $this->actingAs($this->cost->user)->post($this->url, ['spent_at' => $spent_at])->assertSessionHasErrors('spent_at');
     })->with([null, '', 'date', 0, -10, 10]);
