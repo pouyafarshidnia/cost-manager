@@ -55,6 +55,30 @@
         </a>
 
 
+        <!-- Costs --->
+        <a href="{{ route('costs.index') }}"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
+            :class="routeName === 'costs.index' ?
+                'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' :
+                ' hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-coi"
+                :class="routeName === 'costs.index' ? 'text-indigo-700 dark:text-indigo-400' :
+                    'hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
+                <path d="M12 7v10" />
+            </svg>
+            <span
+                :class="routeName === 'costs.index' ? 'text-indigo-700 dark:text-indigo-400' :
+                    'hover:bg-gray-50 dark:hover:bg-gray-700/50'">
+                Costs</span>
+        </a>
+
+
         <!-- Sample menu --->
         <div x-data="{ open: false }">
             <button x-on:click="open = !open"
