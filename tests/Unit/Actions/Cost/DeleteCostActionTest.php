@@ -14,7 +14,7 @@ it('can delete a cost', function () {
 
     $costsCount = Cost::count();
 
-    $this->action->handle($this->cosr);
+    $this->action->handle($this->cost);
 
     expect(Cost::count())->toBe($costsCount - 1);
 });
