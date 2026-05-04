@@ -2,6 +2,7 @@
 @section('content')
     <div x-data="{
         createOpen: false,
+        filterOpen: false,
         editOpen: false,
         deleteOpen: false,
         selectedCost: null,
@@ -16,7 +17,7 @@
     }">
 
         <x-flash></x-flash>
-
+        {{-- @dd(request()->price[0]) --}}
         <!-- Main Content -->
         <div class="lg:ml-64 min-h-[calc(100vh-4rem)] bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
             <div class="p-4 sm:p-6 lg:p-8">
@@ -35,6 +36,17 @@
                     <!-- Action Buttons -->
                     <div class="flex items-center gap-3">
 
+                        <!-- Filter Button -->
+                        <button x-on:click="filterOpen = true"
+                            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                                </path>
+                            </svg>
+                            Filter
+                        </button>
+
                         <!-- Create Button -->
                         <button x-on:click="createOpen = true"
                             class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-purple-600 rounded-xl hover:bg-purple-700 transition-colors duration-200">
@@ -44,16 +56,16 @@
                             </svg>
                             New Cost
                         </button>
+
+
+
                     </div>
                 </div>
 
                 <!-- Search Bar & Page Size -->
                 <div class="mb-6">
                     <form method="get" class="flex flex-wrap items-center gap-3">
-                        <!-- Hidden inputs for existing params -->
-                        @foreach (request()->except(['s', 'perPage']) as $key => $value)
-                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                        @endforeach
+
 
                         <!-- Search Input -->
                         <div class="relative max-w-md flex-1 min-w-[200px]">
@@ -534,6 +546,113 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
+        <!-- Filter Modal -->
+        <div x-cloak x-show="filterOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="filter-title"
+            role="dialog" aria-modal="true">
+            <!-- Backdrop -->
+            <div x-show="filterOpen" x-transition:enter="transition-opacity ease-linear duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-linear duration-200" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" x-on:click="filterOpen = false"
+                class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm"></div>
+
+            <!-- Modal Panel -->
+            <div class="flex min-h-full items-center justify-center p-4">
+                <form x-show="filterOpen" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    class="relative w-full max-w-sm transform overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-left shadow-xl transition-all">
+                    <!-- Header -->
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="filter-title">
+                                Filter
+                                Costs</h3>
+                            <button x-on:click="filterOpen = false"
+                                class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="px-6 py-4 space-y-4">
+                        <!-- Date Range -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Date
+                                Range</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="date" name="date[]" value="{{ request()->date[0] ?? '' }}"
+                                    class="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <input type="date" name="date[]" value="{{ request()->date[1] ?? '' }}"
+                                    class="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Price
+                                Range</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="relative">
+                                    <span
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-600 font-medium">$</span>
+                                    <input type="number" name="price[]" placeholder="Min"
+                                        value="{{ request()->price[0] ?? '' }}"
+                                        class="w-full pl-7 pr-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200">
+                                </div>
+                                <div class="relative">
+                                    <span
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-600 font-medium">$</span>
+                                    <input type="number" name="price[]" placeholder="Max"
+                                        value="{{ request()->price[1] ?? '' }}"
+                                        class="w-full pl-7 pr-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+                            <select name="category"
+                                class="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">All Categories</option>
+                                @foreach ($categories ?? [] as $category)
+                                    <option @selected(request()->category == $category->id) value="{{ $category->id }}">
+                                        {{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                        <a href="{{ route('costs.index') }}"
+                            class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
+                            Reset Filters
+                        </a>
+                        <div class="flex items-center gap-3">
+                            <button x-on:click="filterOpen = false"
+                                class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                                Cancel
+                            </button>
+                            <button type='submit'
+                                class="px-4 py-2 text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200">
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
