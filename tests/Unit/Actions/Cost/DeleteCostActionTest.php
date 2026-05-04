@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\Category\DeleteCostAction;
+use App\Actions\Cost\DeleteCostAction;
 use App\Models\Cost;
 
 beforeEach(function () {
@@ -14,7 +14,7 @@ it('can delete a cost', function () {
 
     $costsCount = Cost::count();
 
-    $this->action->handle($this->category);
+    $this->action->handle($this->cosr);
 
     expect(Cost::count())->toBe($costsCount - 1);
 });

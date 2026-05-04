@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\Category\StoreCostAction;
+use App\Actions\Cost\StoreCostAction;
 use App\Models\Cost;
 
 beforeEach(function () {
