@@ -222,7 +222,7 @@
                                                 <div class="flex items-center justify-end gap-2">
 
                                                     <button type='button'
-                                                        x-on:click="openEdit({{ json_encode(['id' => $cost->id, 'title' => $cost->title, 'price' => $cost->price, 'category_id' => $cost->category_id ?? null, 'spent_at' => $cost->spent_at]) }})"
+                                                        x-on:click="openEdit({{ json_encode(['id' => $cost->id, 'title' => $cost->title, 'price' => $cost->price, 'category_id' => $cost->category_id ?? null, 'spent_at' => $cost->spent_at->format('Y-m-d')]) }})"
                                                         class="p-2 text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors duration-200">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                             viewBox="0 0 24 24">
