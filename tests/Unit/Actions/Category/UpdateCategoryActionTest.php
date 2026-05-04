@@ -11,12 +11,12 @@ beforeEach(function () {
 
 
 
-it('can update category', function () {
+it('can update s category', function () {
 
-    $categoryCount = Category::count();
+    $categoriesCount = Category::count();
 
     $this->action->handle($this->category, 'Updated Test Category');
 
-    expect(Category::count())->toBe($categoryCount)
+    expect(Category::count())->toBe($categoriesCount)
         ->and($this->category->fresh()->title)->toBe('Updated Test Category');
 });

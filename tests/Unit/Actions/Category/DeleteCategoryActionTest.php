@@ -10,7 +10,7 @@ beforeEach(function () {
 
 
 
-it('can delete category', function () {
+it('can delete a category', function () {
 
     $categoriesCount = Category::count();
 

@@ -11,7 +11,7 @@ beforeEach(function () {
 
 
 
-it('can store category', function () {
+it('can store a category', function () {
 
     $categoriesCount = Category::count();
 
