@@ -17,7 +17,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
 
-                <x-cards.primary :route="route('categories.index')" title="Total Categories" :number="$categoryCount"></x-cards.primary>
+                <x-cards.primary :route="route('categories.index')" title="Total Categories" :number="$categoriesCount"></x-cards.primary>
+                <x-cards.info :route="route('costs.index')" title="Total Costs" :number="$costsCount"></x-cards.info>
 
             </div>
 

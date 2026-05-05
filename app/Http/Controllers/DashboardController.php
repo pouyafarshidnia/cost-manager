@@ -9,7 +9,8 @@ class DashboardController
 {
     public function index(Request $request): View
     {
-        $categoryCount = $request->user()->categories->count();
-        return view('dashboard.index', compact('categoryCount'));
+        $categoriesCount = $request->user()->categories->count();
+        $costsCount = $request->user()->costs->count();
+        return view('dashboard.index', compact('categoriesCount', 'costsCount'));
     }
 }

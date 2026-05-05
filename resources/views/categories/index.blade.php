@@ -267,7 +267,7 @@
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="modal-title">Create
                                 New
                                 Category</h3>
-                            <button x-on:click="createOpen = false"
+                            <button type='button' x-on:click="createOpen = false"
                                 class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -17,7 +17,7 @@
     }">
 
         <x-flash></x-flash>
-        {{-- @dd(request()->price[0]) --}}
+
         <!-- Main Content -->
         <div class="lg:ml-64 min-h-[calc(100vh-4rem)] bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
             <div class="p-4 sm:p-6 lg:p-8">
@@ -323,7 +323,7 @@
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="modal-title">Create New
                                 Cost</h3>
-                            <button x-on:click="createOpen = false"
+                            <button type='button' x-on:click="createOpen = false"
                                 class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
