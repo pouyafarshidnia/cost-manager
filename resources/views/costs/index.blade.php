@@ -102,35 +102,55 @@
                                         </th>
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'titleAsc' ? 'titleDesc' : 'titleAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Title
-                                                <x-icons.arrow-up class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'titleAsc' or request('sortBy') === 'titleDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ request('sortBy') === 'titleAsc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'categoryAsc' ? 'categoryDesc' : 'categoryAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Category
-                                                <x-icons.chevron-down class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'categoryeAsc' or request('sortBy') === 'categoryDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ request('sortBy') === 'categoryAsc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'priceAsc' ? 'priceDesc' : 'priceAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Price
-                                                <x-icons.arrows-up-down class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'priceAsc' or request('sortBy') === 'priceDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ request('sortBy') === 'priceAsc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'dateAsc' ? 'dateDesc' : 'dateAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Spent At
-                                                <x-icons.calendar class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'dateAsc' or request('sortBy') === 'dateDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ (request('sortBy') === 'dateAsc') === 'asc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
 
                                         <th

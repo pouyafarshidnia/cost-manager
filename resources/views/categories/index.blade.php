@@ -96,21 +96,31 @@
                                         </th>
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'nameAsc' ? 'nameDesc' : 'nameAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Category Name
-                                                <x-icons.arrow-up class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'nameAsc' or request('sortBy') === 'nameDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ request('sortBy') === 'nameAsc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
-
 
                                         <th class="px-6 py-4 text-left">
-                                            <button
+                                            <a href="{{ request()->fullUrlWithQuery(['sortBy' => request('sortBy') === 'dateAsc' ? 'dateDesc' : 'dateAsc']) }}"
                                                 class="flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200">
                                                 Created At
-                                                <x-icons.chevron-down class="text-gray-400" />
-                                            </button>
+                                                @if (request('sortBy') === 'dateAsc' or request('sortBy') === 'dateDesc')
+                                                    <x-icons.arrow-up
+                                                        class="{{ request('sortBy') === 'dateAsc' ? 'text-purple-600' : 'text-purple-600 rotate-180' }}" />
+                                                @else
+                                                    <x-icons.arrows-up-down class="text-gray-400" />
+                                                @endif
+                                            </a>
                                         </th>
+
 
                                         <th
                                             class="px-6 py-4 text-right text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider transition-colors duration-200">
