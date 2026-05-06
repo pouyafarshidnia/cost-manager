@@ -18,6 +18,18 @@ class SortByFilter extends ModelFilter
    }
 
 
+   public function categoryAsc()
+   {
+      $this->asc('category_id');
+   }
+
+   public function categoryDesc()
+   {
+      $this->desc('category_id');
+   }
+
+
+
    public function priceAsc()
    {
       $this->asc('price');
