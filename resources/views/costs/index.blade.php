@@ -194,17 +194,21 @@
                                             <td class="px-6 py-4 text-right">
                                                 <div class="flex items-center justify-end gap-2">
 
-                                                    <button type='button'
-                                                        x-on:click="openEdit({{ json_encode(['id' => $cost->id, 'title' => $cost->title, 'price' => $cost->price, 'category_id' => $cost->category_id ?? null, 'spent_at' => $cost->spent_at->format('Y-m-d')]) }})"
-                                                        class="p-2 text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors duration-200">
-                                                        <x-icons.pencil />
-                                                    </button>
+                                                    <x-tooltip text="Edit Cost">
+                                                        <button type='button'
+                                                            x-on:click="openEdit({{ json_encode(['id' => $cost->id, 'title' => $cost->title, 'price' => $cost->price, 'category_id' => $cost->category_id ?? null, 'spent_at' => $cost->spent_at->format('Y-m-d')]) }})"
+                                                            class="p-2 text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors duration-200">
+                                                            <x-icons.pencil />
+                                                        </button>
+                                                    </x-tooltip>
 
-                                                    <button type='button'
-                                                        x-on:click="openDelete({{ json_encode(['id' => $cost->id, 'title' => $cost->title]) }})"
-                                                        class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200">
-                                                        <x-icons.trash />
-                                                    </button>
+                                                    <x-tooltip text="Delete Cost">
+                                                        <button type='button'
+                                                            x-on:click="openDelete({{ json_encode(['id' => $cost->id, 'title' => $cost->title]) }})"
+                                                            class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200">
+                                                            <x-icons.trash />
+                                                        </button>
+                                                    </x-tooltip>
                                                 </div>
                                             </td>
 
