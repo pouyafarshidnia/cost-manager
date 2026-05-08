@@ -11,6 +11,8 @@ class DashboardController
     {
         $categoriesCount = $request->user()->categories->count();
         $costsCount = $request->user()->costs->count();
-        return view('dashboard.index', compact('categoriesCount', 'costsCount'));
+        $totalCostPrice = '$' . $request->user()->costs()->select('price')->sum('price');
+
+        return view('dashboard.index', compact('categoriesCount', 'costsCount', 'totalCostPrice'));
     }
 }

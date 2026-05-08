@@ -19,6 +19,7 @@
 
                 <x-cards.primary :route="route('categories.index')" title="Total Categories" :number="$categoriesCount"></x-cards.primary>
                 <x-cards.info :route="route('costs.index')" title="Total Costs" :number="$costsCount"></x-cards.info>
+                <x-cards.success :route="route('costs.index')" title="Total Costs Price" :number="$totalCostPrice"></x-cards.success>
 
             </div>
 
