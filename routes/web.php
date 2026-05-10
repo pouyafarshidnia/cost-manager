@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CostsController;
@@ -43,6 +44,15 @@ Route::middleware('auth')->group(function () {
      * Costs
      */
     Route::resource('costs', CostsController::class)->except(['show', 'create', 'edit']);
+
+
+    /**
+     * Analytic
+     */
+    Route::prefix('analytics')->controller(AnalyticController::class)->group(function () {
+
+        Route::get('', 'index')->name('analytics.index');
+    });
 
 
 
