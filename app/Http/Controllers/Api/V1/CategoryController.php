@@ -9,7 +9,7 @@ class CategoryController
 {
     public function index()
     {
-        return response()->json(['message' => 'index message'], 200);
+        return response()->json(['message' => 'index message', 'user' => auth('sanctum')->id()], 200);
     }
 
 

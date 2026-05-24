@@ -1,6 +1,6 @@
 <?php
 
-
+use Laravel\Sanctum\Sanctum;
 
 beforeEach(function () {
 
@@ -15,9 +15,15 @@ beforeEach(function () {
  */
 describe('access tests', function () {
 
+    it('denies access to guests', function () {
+
+        $this->put($this->url)->assertRedirect();
+    });
+
+
     it('initial test', function () {
 
-        $this->put($this->url)->assertOK()
-            ->assertJsonStructure(['message']);
+        Sanctum::actingAs($this->user);
+        $this->put($this->url)->assertOK()->assertJsonStructure(['message']);
     });
 });

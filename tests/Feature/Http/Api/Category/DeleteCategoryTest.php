@@ -1,5 +1,6 @@
 <?php
 
+use Laravel\Sanctum\Sanctum;
 
 beforeEach(function () {
     $this->url = route('api.v1.categories.destroy', $this->category);
@@ -12,9 +13,14 @@ beforeEach(function () {
  */
 describe('access tests', function () {
 
+    it('denies access to guests', function () {
+        $this->delete($this->url)->assertRedirect();
+    });
+
+
     it('initial test', function () {
 
-        $this->delete($this->url)->assertOK()
-            ->assertJsonStructure(['message']);
+        Sanctum::actingAs($this->user);
+        $this->delete($this->url)->assertOK()->assertJsonStructure(['message']);
     });
 });
