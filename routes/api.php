@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Api/V1 Routes
  */
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->as('api.v1.')->group(function () {
 
     /**
      * Categories
