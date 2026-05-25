@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(['message' => 'index message', 'user' => auth('sanctum')->id()], 200);
+        return new CategoryCollection($request->user()->categories()->filter($request->all())->paginate($request->perPage)->withQueryString());
     }
 
 
     public function show(Category $category)
     {
-        return response()->json(['message' => 'show message'], 200);
+        Gate::authorize('view', $category);
+
+        return new CategoryResource($category);
     }
 
 

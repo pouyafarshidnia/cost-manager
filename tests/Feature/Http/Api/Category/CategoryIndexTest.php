@@ -22,6 +22,6 @@ describe('access tests', function () {
     it('initial test', function () {
 
         Sanctum::actingAs($this->user);
-        $this->get($this->url)->assertOK()->assertJsonStructure(['message', 'user']);
+        $this->get($this->url)->assertOK()->assertJsonStructure(['data', 'links', 'meta']);
     });
 });
