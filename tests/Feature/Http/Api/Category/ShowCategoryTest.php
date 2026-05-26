@@ -21,7 +21,7 @@ describe('access tests', function () {
     });
 
 
-    it('initial test', function () {
+    it('renders successfuly', function () {
 
         Sanctum::actingAs($this->user);
         $this->get($this->url)->assertOK()->assertJsonStructure(['data' => ['title', 'date', 'owner']]);

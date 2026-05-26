@@ -5,6 +5,10 @@ use Laravel\Sanctum\Sanctum;
 beforeEach(function () {
 
     $this->url = route('api.v1.categories.update', $this->category);
+    $this->notFoundUrl = route('api.v1.categories.update', ['category' => 999]);
+    $this->otherCategoryUrl = route('api.v1.categories.update', ['category' => 2]);
+
+    $this->data = ['title' => 'updated Category'];
 });
 
 
@@ -21,9 +25,14 @@ describe('access tests', function () {
     });
 
 
-    it('initial test', function () {
-
+    it('returns json for 404 status', function () {
         Sanctum::actingAs($this->user);
-        $this->put($this->url)->assertOK()->assertJsonStructure(['message']);
+        $this->put($this->notFoundUrl, $this->data)->assertStatus(404)->assertJsonStructure(['message']);
+    });
+
+
+    it('renders successfuly', function () {
+        Sanctum::actingAs($this->user);
+        $this->put($this->url, $this->data)->assertStatus(202)->assertJsonStructure(['message']);
     });
 });

@@ -24,6 +24,6 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json(['message' => 'You don`t have permission to this endpoint'], 403);
 
             if ($e instanceof NotFoundHttpException and request()->is('api/*'))
-                return response()->json(['message' => 'Not Found'], 404);
+                return response()->json(['message' => 'Resource Not Found'], 404);
         });
     })->create();

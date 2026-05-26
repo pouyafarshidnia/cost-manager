@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Actions\Category\DeleteCategoryAction;
+use App\Actions\Category\StoreCategoryAction;
+use App\Actions\Category\UpdateCategoryAction;
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\StoreCategoryViaApiRequest;
+use App\Http\Requests\Category\UpdateCategoryViaApiRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class CategoryController
 {
-    public function index(Request $request)
+    public function index(Request $request): CategoryCollection
     {
         return new CategoryCollection($request->user()->categories()->filter($request->all())->paginate($request->perPage)->withQueryString());
     }
 
 
-    public function show(Category $category)
+    public function show(Category $category): CategoryResource
     {
         Gate::authorize('view', $category);
 
@@ -24,20 +31,23 @@ class CategoryController
     }
 
 
-    public function store()
+    public function store(StoreCategoryViaApiRequest $request, StoreCategoryAction $action): JsonResponse
     {
-        return response()->json(['message' => 'store message'], 200);
+        $action->handle($request->user(), $request->title);
+        return response()->json(['message' => 'Category created successfuly'], 201);
     }
 
 
-    public function update(Category $category)
+    public function update(UpdateCategoryViaApiRequest $request, Category $category, UpdateCategoryAction $action): JsonResponse
     {
-        return response()->json(['message' => 'update message', 'id' => $category->id], 200);
+        $action->handle($category, $request->title);
+        return response()->json(['message' => 'Category updated successfuly'], 202);
     }
 
 
-    public function destroy(Category $category)
+    public function destroy(Category $category, DeleteCategoryAction $action): JsonResponse
     {
-        return response()->json(['message' => 'destroy message', 'id' => $category->id], 200);
+        $action->handle($category);
+        return response()->json(['message' => 'Category Destroyed successfuly'], 202);
     }
 }

@@ -4,6 +4,8 @@ use Laravel\Sanctum\Sanctum;
 
 beforeEach(function () {
     $this->url = route('api.v1.categories.destroy', $this->category);
+    $this->notFoundUrl = route('api.v1.categories.destroy', ['category' => 999]);
+    $this->otherCategoryUrl = route('api.v1.categories.destroy', ['category' => 2]);
 });
 
 
@@ -21,6 +23,6 @@ describe('access tests', function () {
     it('initial test', function () {
 
         Sanctum::actingAs($this->user);
-        $this->delete($this->url)->assertOK()->assertJsonStructure(['message']);
+        $this->delete($this->url)->assertStatus(202)->assertJsonStructure(['message']);
     });
 });
