@@ -20,6 +20,13 @@ describe('access tests', function () {
     });
 
 
+    it('returns json for 403 status', function () {
+
+        Sanctum::actingAs($this->user);
+        $this->delete($this->otherCategoryUrl)->assertStatus(403)->assertJsonStructure(['message']);
+    });
+
+
     it('initial test', function () {
 
         Sanctum::actingAs($this->user);

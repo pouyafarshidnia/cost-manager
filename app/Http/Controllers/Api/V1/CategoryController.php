@@ -33,6 +33,8 @@ class CategoryController
 
     public function store(StoreCategoryViaApiRequest $request, StoreCategoryAction $action): JsonResponse
     {
+
+
         $action->handle($request->user(), $request->title);
         return response()->json(['message' => 'Category created successfuly'], 201);
     }
@@ -40,6 +42,8 @@ class CategoryController
 
     public function update(UpdateCategoryViaApiRequest $request, Category $category, UpdateCategoryAction $action): JsonResponse
     {
+        Gate::authorize('update', $category);
+
         $action->handle($category, $request->title);
         return response()->json(['message' => 'Category updated successfuly'], 202);
     }
@@ -47,6 +51,8 @@ class CategoryController
 
     public function destroy(Category $category, DeleteCategoryAction $action): JsonResponse
     {
+        Gate::authorize('delete', $category);
+
         $action->handle($category);
         return response()->json(['message' => 'Category Destroyed successfuly'], 202);
     }
