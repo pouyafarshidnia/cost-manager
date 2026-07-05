@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\View\View;
 
 class DashboardController
 {
-    public function index(Request $request): View
+    public function index(#[CurrentUser] User $user): View
     {
-        $categoriesCount = $request->user()->categories->count();
-        $costsCount = $request->user()->costs->count();
-        $totalCostPrice = '$' . $request->user()->costs()->select('price')->sum('price');
+        $categoriesCount = $user->categories->count();
+        $costsCount = $user->costs->count();
+        $totalCostPrice = '$' . $user->costs()->select('price')->sum('price');
 
         return view('dashboard.index', compact('categoriesCount', 'costsCount', 'totalCostPrice'));
     }

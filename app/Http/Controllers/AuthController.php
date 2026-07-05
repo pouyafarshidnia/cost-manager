@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 
 class AuthController
 {
-    public function __invoke(Request $request): View
+    public function __invoke(): View
     {
         return view('auth.index');
     }

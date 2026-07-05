@@ -8,6 +8,8 @@ use App\Actions\Category\UpdateCategoryAction;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -15,16 +17,16 @@ use Illuminate\View\View;
 
 class CategoryController
 {
-    public function index(Request $request): View
+    public function index(Request $request, #[CurrentUser] User $user): View
     {
-        $categories = $request->user()->categories()->filter($request->all())->paginate($request->perPage)->withQueryString();
+        $categories = $user->categories()->filter($request->all())->paginate($request->perPage)->withQueryString();
         return view('categories.index', compact('categories'));
     }
 
 
-    public function store(StoreCategoryRequest $request, StoreCategoryAction $action): RedirectResponse
+    public function store(StoreCategoryRequest $request, #[CurrentUser] User $user, StoreCategoryAction $action): RedirectResponse
     {
-        $action->handle($request->user(), $request->title);
+        $action->handle($user, $request->title);
         return to_route('categories.index')->with('success', 'Category created successfully.');
     }
 

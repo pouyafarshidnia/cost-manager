@@ -5,21 +5,22 @@ namespace App\Http\Controllers\Api\V1;
 use App\Actions\Category\DeleteCategoryAction;
 use App\Actions\Category\StoreCategoryAction;
 use App\Actions\Category\UpdateCategoryAction;
-use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\StoreCategoryViaApiRequest;
 use App\Http\Requests\Category\UpdateCategoryViaApiRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class CategoryController
 {
-    public function index(Request $request): CategoryCollection
+    public function index(Request $request, #[CurrentUser] User $user): CategoryCollection
     {
-        return new CategoryCollection($request->user()->categories()->filter($request->all())->paginate($request->perPage)->withQueryString());
+        return new CategoryCollection($user->categories()->filter($request->all())->paginate($request->perPage)->withQueryString());
     }
 
 
@@ -31,11 +32,11 @@ class CategoryController
     }
 
 
-    public function store(StoreCategoryViaApiRequest $request, StoreCategoryAction $action): JsonResponse
+    public function store(StoreCategoryViaApiRequest $request, #[CurrentUser] User $user, StoreCategoryAction $action): JsonResponse
     {
 
 
-        $action->handle($request->user(), $request->title);
+        $action->handle($user, $request->title);
         return response()->json(['message' => 'Category created successfuly'], 201);
     }
 

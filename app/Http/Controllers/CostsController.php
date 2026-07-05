@@ -8,6 +8,8 @@ use App\Actions\Cost\UpdateCostAction;
 use App\Http\Requests\Cost\StoreCostRequest;
 use App\Http\Requests\Cost\UpdateCostRequest;
 use App\Models\Cost;
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -15,17 +17,17 @@ use Illuminate\Http\RedirectResponse;
 
 class CostsController
 {
-    public function index(Request $request): View
+    public function index(Request $request, #[CurrentUser] User $user): View
     {
-        $categories = $request->user()->categories;
-        $costs = $request->user()->costs()->filter($request->all())->paginate($request->perPage)->withQueryString();
+        $categories = $user->categories;
+        $costs = $user->costs()->filter($request->all())->paginate($request->perPage)->withQueryString();
         return view('costs.index', compact('costs', 'categories'));
     }
 
 
-    public function store(StoreCostRequest $request, StoreCostAction $action): RedirectResponse
+    public function store(StoreCostRequest $request, #[CurrentUser] User $user, StoreCostAction $action): RedirectResponse
     {
-        $action->handle($request->user(), $request->except('_token'));
+        $action->handle($user, $request->except('_token'));
         return to_route('costs.index')->with('success', 'The cost has been created');
     }
 
